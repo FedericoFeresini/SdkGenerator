@@ -11,8 +11,8 @@ RUN apk add --no-cache \
 
 
 
-ADD ./generateSDK.sh /generateSDK.sh
-ADD ./sample_push_event.json /sample_push_event.json
+ADD generateSDK.sh /generateSDK.sh
+ADD sample_push_event.json /sample_push_event.json
 
 RUN chmod +x /generateSDK.sh -v
 
