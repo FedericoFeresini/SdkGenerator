@@ -23,4 +23,4 @@ jobs:
         uses: actions/checkout@v1
         
       - name: Run generator
-        uses: ./github/actions/actions
+        uses: SdkGenerator/actions@master
