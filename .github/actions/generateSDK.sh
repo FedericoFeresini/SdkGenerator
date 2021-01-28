@@ -11,8 +11,8 @@ mkdir ./out
 #    -g csharp \
 #    -o //local
 
-#docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate \
-#    -i //local/mySwagger.json \
-#    -g csharp \
-#    -o //local/out
+docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate \
+    -i //local/mySwagger.json \
+    -g csharp \
+    -o //local/out
 
