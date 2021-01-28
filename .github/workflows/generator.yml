@@ -22,12 +22,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v1
       - name: Check if out exists
-        run: |
-          #!/bin/bash
-          if [[ -d ./out ]] then
-            rm -Rf ./out
-          fi
-          mkdir ./out
+        uses: ./.github/actions
 
       - name: Run Docker From Worflow
         run: docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp -o //local/out  
