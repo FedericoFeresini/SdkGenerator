@@ -22,5 +22,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v1
         
+      - name: Show repo
+        run: echo ${PWD}
+      - name: other path
+        run: |
+          ls
+          echo "--------------"
+          cd ./
+          ls
+      - name: Run Docker From Worflow
+        run: docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp -o //local/out  
       - name: Run generator
         uses: ./.github/actions
