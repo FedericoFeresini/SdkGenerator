@@ -21,16 +21,21 @@ jobs:
           echo test, and deploy your project.
       - name: Checkout repo
         uses: actions/checkout@v1
-        
-      - name: Show repo
-        run: echo ${PWD}
-      - name: other path
+      - name: Check if out exists
         run: |
-          ls
-          echo "--------------"
-          cd ./
-          ls
+          #!/bin/bash
+          if [[ -d ./out ]] then
+            rm -Rf ./out
+          fi
+          mkdir ./out
+
       - name: Run Docker From Worflow
         run: docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp -o //local/out  
-      - name: Run generator
-        uses: ./.github/actions
+#      - name: Run generator
+#        uses: ./.github/actions
+      - name: Upload artifact for Linux
+        uses: actions/upload-artifact@v1.0.0
+        with: 
+           name: csharp
+           path: /${PWD}/out
+
