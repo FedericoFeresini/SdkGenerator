@@ -11,12 +11,12 @@ RUN apk add --no-cache \
 
 
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY sample_push_event.json /sample_push_event.json
+ADD entrypoint.sh /generateSDK.sh
+ADD sample_push_event.json /sample_push_event.json
 
-RUN chmod +x /usr/local/bin/entrypoint.sh -v
+RUN chmod +x /generateSDK.sh -v
 
 
 
-ENTRYPOINT ["generateSDK.sh"]
+ENTRYPOINT ["/generateSDK.sh"]
 
