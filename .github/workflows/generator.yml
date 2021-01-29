@@ -9,6 +9,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Set Up .Net Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+      - name: Install dependencies
+        run: dotnet restore
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -30,6 +36,8 @@ jobs:
         run: docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp -o //local/out  
 #      - name: Run generator
 #        uses: ./.github/actions
+      - name: Build
+        run: dotnet Build --source ./out --configuration Release -o ./out/releases 
       - name: Upload artifact for Linux
         uses: actions/upload-artifact@v1.0.0
         with: 
