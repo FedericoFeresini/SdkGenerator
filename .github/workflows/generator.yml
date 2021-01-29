@@ -30,10 +30,10 @@ jobs:
       - name: Install dependencies
         run: sudo dotnet restore ./out/src/Org.OpenAPITools/Org.OpenAPITools.csproj
 
-      - name: Build
+      - name: Publish
         run: | 
           cd ./out
-          sudo dotnet build --configuration Release -o ./out/releases
+          sudo dotnet publish --configuration Release -o ./out/releases
         
       - name: Upload artifact for Linux
         uses: actions/upload-artifact@v1.0.0
