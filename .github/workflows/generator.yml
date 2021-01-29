@@ -24,18 +24,14 @@ jobs:
         with:
           dotnet-version: 3.1.101
       
-      - name: Show files in ./out
-        run: ls ./out
-      - name: Show files in ./out/src
-        run: ls ./out/src
-      - name: Show files in ./out
+      - name: Show generated csharp project in ./out/src/Org.OpenAPITools
         run: ls ./out/src/Org.OpenAPITools
         
       - name: Install dependencies
         run: dotnet restore ./out/src/Org.OpenAPITools/Org.OpenAPITools.csproj
 
       - name: Build
-        run: dotnet Build --source ./out --configuration Release -o ./out/releases
+        run: dotnet Build --source ./out/src/Org.OpenAPITools --configuration Release -o ./out/releases
         
       - name: Upload artifact for Linux
         uses: actions/upload-artifact@v1.0.0
