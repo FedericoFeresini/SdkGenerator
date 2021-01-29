@@ -7,37 +7,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: Set Up .Net Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 3.1.101
-      - name: Install dependencies
-        run: dotnet restore
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
       - name: Checkout repo
         uses: actions/checkout@v1
+        
       - name: Check if out exists
         uses: ./.github/actions
+      
       - name: Show if out exists
         run: ls -a 
 
       - name: Run Docker From Worflow
         run: docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp -o //local/out  
-#      - name: Run generator
-#        uses: ./.github/actions
+      
+      - name: Set Up .Net Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+      
+      - name: Install dependencies
+        run: dotnet restore
+
       - name: Build
         run: dotnet Build --source ./out --configuration Release -o ./out/releases 
+        
       - name: Upload artifact for Linux
         uses: actions/upload-artifact@v1.0.0
         with: 
