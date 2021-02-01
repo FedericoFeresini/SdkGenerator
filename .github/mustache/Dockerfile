@@ -8,6 +8,8 @@ RUN apk add --no-cache wget bash && \
     chmod a+x /usr/bin/mo && \
     apk del wget && \
     mkdir -p /app
+
+RUN chmod a+x entrypoint.sh
     
 COPY application.properties.template /app/
 COPY properties /app/
