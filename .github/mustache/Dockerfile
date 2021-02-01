@@ -10,6 +10,7 @@ RUN apk add --no-cache wget bash && \
     mkdir -p /app
     
 COPY application.properties.template /app/
+COPY properties /app/
 COPY entrypoint.sh /
 
 RUN ls -a
