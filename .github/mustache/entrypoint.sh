@@ -2,9 +2,10 @@
 cat /app/properties
 echo "==================="
 cat /app/properties | mo /app/application.properties.template > /app/application.properties
+cat /app/application.properties
 echo " ////SET VAR///"
-export NAME="Federico"
-export SURNAME = ""
+export NAME=Federico
+export SURNAME=Feresini
 mo /app/application.properties > /app/application2.properties
 cat /app/application2.properties
 exec "$@"
