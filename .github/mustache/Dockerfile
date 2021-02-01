@@ -16,7 +16,3 @@ COPY entrypoint.sh /
 
 RUN chmod a+x /entrypoint.sh
 RUN chevron -d /app/properties.json /app/application.properties.template
-
-WORKDIR /app
-
-ENTRYPOINT ["/entrypoint.sh"]
