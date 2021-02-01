@@ -1,0 +1,20 @@
+# We have a fat-jar application in the build context at 'build/app.jar'
+FROM openjdk:8-jre-alpine
+
+# install bash and wget, bash is necessary because Mustache does not run on /bin/sh
+RUN apk add --no-cache wget bash && \
+# install mustache as script
+    wget -O /usr/bin/mo https://git.io/get-mo && \
+    chmod a+x /usr/bin/mo && \
+    apk del wget && \
+    mkdir -p /app
+    
+COPY application.properties.template /app/
+COPY entrypoint.sh /
+COPY build/app.jar /app
+
+
+WORKDIR /app
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/bin/sh", "-c", "java -jar /app/app.jar"]
