@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
     
-RUN pip install chevron
+RUN pip3 install chevron
     
 COPY application.properties.template /app/
 COPY properties.json /app/
