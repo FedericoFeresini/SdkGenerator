@@ -1,4 +1,3 @@
-# We have a fat-jar application in the build context at 'build/app.jar'
 FROM ubuntu:16.04
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
