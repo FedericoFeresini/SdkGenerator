@@ -1,13 +1,14 @@
 # We have a fat-jar application in the build context at 'build/app.jar'
-FROM openjdk:8-jre-alpine
+FROM ubuntu:16.04
 
-# install bash and wget, bash is necessary because Mustache does not run on /bin/sh
-RUN apk add --no-cache wget bash && \
-# install mustache as script
-    wget -O /usr/bin/mo https://git.io/get-mo && \
-    chmod a+x /usr/bin/mo && \
-    apk del wget && \
-    mkdir -p /app
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.5 \
+    python3-pip \
+    && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
+RUN pip install chevron
     
 COPY application.properties.template /app/
 COPY properties /app/
@@ -15,11 +16,6 @@ COPY entrypoint.sh /
 
 RUN chmod a+x /entrypoint.sh
 
-RUN ls /usr/bin
-
 WORKDIR /app
-
-RUN echo "----------------"
-RUN ls -a
 
 ENTRYPOINT ["/entrypoint.sh"]
