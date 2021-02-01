@@ -11,10 +11,12 @@ RUN apk add --no-cache wget bash && \
     
 COPY application.properties.template /app/
 COPY entrypoint.sh /
-COPY build/app.jar /app
 
+RUN ls -a
 
 WORKDIR /app
 
+RUN echo "----------------"
+RUN ls -a
+
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/bin/sh", "-c", "java -jar /app/app.jar"]
