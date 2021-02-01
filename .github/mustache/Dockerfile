@@ -11,10 +11,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install chevron
     
 COPY application.properties.template /app/
-COPY properties /app/
+COPY properties.json /app/
 COPY entrypoint.sh /
 
 RUN chmod a+x /entrypoint.sh
+RUN chevron -d /app/properties.json application.properties.template
 
 WORKDIR /app
 
