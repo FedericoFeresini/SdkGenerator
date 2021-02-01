@@ -1,5 +1,5 @@
 #!/bin/bash
-cat << properties
+cat << /app/properties
 echo "==================="
 cat << /app/properties mo /app/application.properties.template > /app/application.properties
 echo "-------------------------"
