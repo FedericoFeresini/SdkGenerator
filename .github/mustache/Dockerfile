@@ -13,10 +13,9 @@ COPY application.properties.template /app/
 COPY properties /app/
 COPY entrypoint.sh /
 
-RUN ls -a
 RUN chmod a+x /entrypoint.sh
 
-RUN ls -a
+RUN ls /usr/bin
 
 WORKDIR /app
 
