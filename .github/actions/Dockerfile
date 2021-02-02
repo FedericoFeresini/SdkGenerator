@@ -10,9 +10,9 @@ RUN apk add --no-cache \
                 which jq
 
     
-ADD ./generateSDK.sh /generateSDK.sh
-ADD ./sample_push_event.json /sample_push_event.json
-ADD ./mySwagger.json /mySwagger.json
+ADD /generateSDK.sh /generateSDK.sh
+ADD /sample_push_event.json /sample_push_event.json
+ADD /mySwagger.json /mySwagger.json
 
 RUN chmod +x /generateSDK.sh -v
 
