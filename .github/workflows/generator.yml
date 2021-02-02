@@ -11,9 +11,10 @@ jobs:
         uses: actions/checkout@v1
         
       - name: Check Current Folder
-        run: ls -a ./
-      - name: Check root Folder
-        run: ls -a /
+        run: | 
+          pwd ./
+          ls -a ./
+          
       - name: Check if out exists
         uses: ./.github/actions
       
