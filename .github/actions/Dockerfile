@@ -9,12 +9,7 @@ RUN apk add --no-cache \
                 which http && \
                 which jq
 
-RUN pwd ./ && \
-    ls -a && \
-    echo "------" && \
-    pwd && /
-    printenv
-    
+  
 ADD /home/runner/work/SdkGenerator/SdkGenerator/./generateSDK.sh /generateSDK.sh
 ADD /home/runner/work/SdkGenerator/SdkGenerator/./sample_push_event.json /sample_push_event.json
 ADD /home/runner/work/SdkGenerator/SdkGenerator/./mySwagger.json /mySwagger.json
