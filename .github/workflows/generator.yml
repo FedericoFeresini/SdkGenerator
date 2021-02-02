@@ -17,7 +17,7 @@ jobs:
         run: ls -a 
 
       - name: Run Docker From Worflow
-        run: docker run --rm --name devtest -v "/${PWD}://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp-netcore -o //local/out  
+        run: docker run --rm --name devtest -v "./.github/actions://local" openapitools/openapi-generator-cli generate -i //local/mySwagger.json -g csharp-netcore -o //local/out  
       
       - name: Set Up .Net Core
         uses: actions/setup-dotnet@v1
