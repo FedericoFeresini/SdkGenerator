@@ -10,9 +10,12 @@ RUN apk add --no-cache \
                 which jq
 
 
-
-ADD generateSDK.sh /generateSDK.sh
-ADD sample_push_event.json /sample_push_event.json
+RUN ls ./ \
+    echo "+++++++++++++++++++"
+    ls ./.github/actions
+    
+ADD ./generateSDK.sh /generateSDK.sh
+ADD ./sample_push_event.json /sample_push_event.json
 
 RUN chmod +x /generateSDK.sh -v
 
