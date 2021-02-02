@@ -9,9 +9,9 @@ RUN apk add --no-cache \
                 which http && \
                 which jq
 
-RUN ls ./ -a && \
+RUN pwd ./ && \
     echo "------" && \
-    ls / -a
+    pws /
 
 ADD /generateSDK.sh /generateSDK.sh
 ADD /sample_push_event.json /sample_push_event.json
