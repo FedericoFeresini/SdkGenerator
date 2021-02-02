@@ -170,9 +170,9 @@
           "400": {
             "description": "Bad Request",
             "content": {
-              "text/plain": { },
-              "application/json": { },
-              "text/json": { }
+              "text/plain": {},
+              "application/json": {},
+              "text/json": {}
             }
           }
         }
@@ -236,9 +236,9 @@
           "403": {
             "description": "Access denied (Endpoint in beta)",
             "content": {
-              "text/plain": { },
-              "application/json": { },
-              "text/json": { }
+              "text/plain": {},
+              "application/json": {},
+              "text/json": {}
             }
           }
         }
@@ -302,9 +302,9 @@
           "403": {
             "description": "Access denied (Endpoint in beta)",
             "content": {
-              "text/plain": { },
-              "application/json": { },
-              "text/json": { }
+              "text/plain": {},
+              "application/json": {},
+              "text/json": {}
             }
           }
         }
@@ -362,9 +362,11 @@
       }
     }
   },
-  "security" : {
-    "BearerAuth" : []
-  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
   "components": {
     "schemas": {
       "HelloWorldMessageResponse": {
@@ -557,7 +559,7 @@
             "items": {
               "$ref": "#/components/schemas/CriteoApiDataOfPortfolioMessage"
             },
-            "description": "The response�s primary data"
+            "description": "The response\ufffds primary data"
           },
           "errors": {
             "type": "array",
@@ -729,10 +731,10 @@
         "description": "Class with elementary info about advertiser"
       }
     },
-    "securitySchemes" : {
-      "BearerAuth" : {
-        "type" : "http",
-        "scheme" : "bearer"
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   },
