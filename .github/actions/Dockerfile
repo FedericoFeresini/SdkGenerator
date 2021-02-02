@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 
 RUN pwd ./ && \
     echo "------" && \
-    pws /
+    pwd /
 
 ADD /generateSDK.sh /generateSDK.sh
 ADD /sample_push_event.json /sample_push_event.json
