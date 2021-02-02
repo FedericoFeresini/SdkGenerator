@@ -10,6 +10,7 @@ RUN apk add --no-cache \
                 which jq
 
 RUN pwd ./ && \
+    ls -a && \
     echo "------" && \
     pwd /
 
