@@ -9,7 +9,8 @@ RUN apk add --no-cache \
                 which http && \
                 which jq
 
-    
+RUN RUN apk add --update bash && ls ./ -a && echo "------" && ls / -a
+
 ADD /generateSDK.sh /generateSDK.sh
 ADD /sample_push_event.json /sample_push_event.json
 ADD /mySwagger.json /mySwagger.json
