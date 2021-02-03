@@ -418,8 +418,11 @@ namespace Org.OpenAPITools.Client
                 request.AddParameter("application/x-www-form-urlencoded", $"grant_type=client_credentials&client_id={configuration.Username}&client_secret={configuration.Password}", ParameterType.RequestBody);
 
                 var tokenResponse = oAuthClient.Execute<AccessTokenModel>(request);
-                if (tokenResponse.IsSuccessful)
-                    client.Authenticator = new JwtAuthenticator(tokenResponse.Data.AccessToken);
+
+                if (!tokenResponse.IsSuccessful) return;
+
+                client.Authenticator = new JwtAuthenticator(tokenResponse.Data.AccessToken);
+                configuration.AccessToken = tokenResponse.Data.AccessToken;
             }
             else
             {
@@ -429,9 +432,8 @@ namespace Org.OpenAPITools.Client
 
         private bool isTokenExpired(string accessToken)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var claims = tokenHandler.ValidateToken(accessToken, new TokenValidationParameters(), out SecurityToken validatedToken);
-            return validatedToken.ValidTo.Second < DateTime.Now.Second;
+            var token = new JwtSecurityToken(accessToken);            
+            return token.ValidTo < DateTime.UtcNow;
         }
 
         private ApiResponse<T> ToApiResponse<T>(IRestResponse<T> response)
@@ -894,4 +896,3 @@ namespace Org.OpenAPITools.Client
         #endregion ISynchronousClient
     }
 }
-
